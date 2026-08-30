@@ -101,6 +101,37 @@ omarchy theme set tsunderick
 
 Neovim, btop, terminals and the rest regenerate — no hand-synced files.
 
+## OpenCode
+
+**Zero integration needed.** opencode follows the theme through its built-in
+`system` theme, which it generates at runtime from the terminal's detected
+palette (foot/tmux carry the ANSI colors above). Keep `tui.json` as:
+
+```json
+{ "$schema": "https://opencode.ai/tui.json", "theme": "system" }
+```
+
+**Pitfall — dead symlinks under `~/.config/opencode/` (bit us
+2026-08-30).** At every launch and every config reload, opencode rescans
+`~/.config/opencode/themes/*.json` (plus `.opencode/themes/` up the cwd
+tree). If that scan *errors* — a dangling symlink, an unreadable file,
+invalid JSON — opencode silently forces the stock `opencode` theme,
+overriding `"system"`: every terminal, every fresh instance, SIGUSR2
+reloads included.
+
+The incident: a dotfiles cleanup deleted the target of
+`~/.config/opencode/themes` (an old custom theme), leaving a dead symlink.
+Symptom — opencode in its default look while the rest of the desktop was
+pink. Fix:
+
+```bash
+rm ~/.config/opencode/themes
+```
+
+Diagnosis shortcut: if opencode ignores the theme in *every* terminal even
+after fresh restarts, suspect its config dir first — the theme pipeline
+itself is fine and needs nothing from this repo.
+
 ## Attribution
 
 Derived from [omarchy-sakura-theme](https://github.com/bjarneo/omarchy-sakura-theme)
