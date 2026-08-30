@@ -57,6 +57,13 @@ return {
     -- set up hot reload
     config = function(_, opts)
       require("aether").setup(opts)
+      -- Pill palette for the lualine tmux-session pill (twin of tmux
+      -- status-left) — rendered from colors.toml tokens at theme-set time.
+      -- Consumed by dotfiles: nvim/lua/plugins/lualine-session.lua
+      vim.g.tsunderick_pills = {
+        session_bg = "{{ color5 }}",
+        session_fg = "{{ color0 }}",
+      }
       vim.cmd.colorscheme("aether")
       require("aether.hotreload").setup()
     end,
