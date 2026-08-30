@@ -1,33 +1,53 @@
-# Sakura
+# tsunderick theme
 
-Sakura is an elegant, high-contrast theme for Omarchy inspired by the delicate beauty of cherry blossoms. It brings the serene atmosphere of a Japanese spring garden to your coding environment. Designed for those who appreciate refined aesthetics and exceptional readability, it creates a focused workspace as peaceful as sitting beneath blooming sakura trees.
+A personal Omarchy theme derived from
+[bjarneo's Sakura](https://github.com/bjarneo/omarchy-sakura-theme) — same
+cherry-blossom spirit, but with infrastructure enhancements and a palette
+driven toward pastel pink hues.
 
-<p align="center">
-  <img src="logo.png" alt="Sakura Logo">
-</p>
+> Petals drift on morning breeze,
+> Code flows soft like cherry trees.
+> Pastel pinks in harmony,
+> Sakura's grace sets mind at ease,
+> Beauty blooms in each key pressed.
 
-> Petals drift on morning breeze,  
-> Code flows soft like cherry trees.  
-> Pink and gold in harmony,  
-> Sakura's grace sets mind at ease,  
-> Beauty blooms in each key pressed.  
+## What's different from upstream
+
+- **Pastel pink palette.** The gold and peach tones are gone. Every accent is
+  now part of a pastel pink family — blush (~345°), sakura (~333°),
+  orchid (~313°) and lilac (~283°) — with deliberate hue spread so `ls`
+  colors, btop graphs, and syntax groups stay easy to tell apart.
+- **Infrastructure enhancements.**
+  - `colors.toml` as a single source of truth for *both* palettes (terminal
+    ANSI and editor), consumed via tokens.
+  - `themed/neovim.lua.tpl` — a template with fallback tokens, so it renders
+    safely for any theme, never leaving raw tokens behind.
+  - [aether.nvim](https://github.com/bjarneo/aether.nvim) hot reload for
+    near-instant editor color iteration.
+  - `deploy-local-changes.sh` — one-command local deploys, no GitHub
+    push/pull roundtrip while iterating.
+  - A personal background rotation.
 
 ## Screenshot
 
 <p align="center">
-  <img src="theme.png" alt="Sakura Theme Screenshot">
+  <img src="preview.png" alt="tsunderick theme preview">
 </p>
+
+(The preview may lag the current palette — it is regenerated whenever
+convenient.)
 
 ## Installation
 
-### Omarchy
-
-To install this theme, simply use the `omarchy-theme-install` command:
-
 ```bash
-omarchy-theme-install https://github.com/bjarneo/omarchy-sakura-theme
+omarchy-theme-install https://github.com/garciaErick/omarchy-tsunderick-theme
 ```
 
+Then select it:
+
+```bash
+omarchy theme set tsunderick
+```
 
 ## How Theming Works
 
@@ -37,10 +57,11 @@ reads it and generates every themed config from templates — `neovim.lua`,
 
 The theme keeps two palettes in that one file:
 
-- **`color0`–`color15`** — the terminal's ANSI palette (sharper sakura tones,
-  pink *and* gold). Omarchy derives every semantic name (`red`, `muted`, …)
-  from these for all generated configs — terminals, btop, obsidian, vscode.
-- **`nvim_*` keys** — the editor's own softer sakura pinks, consumed only by
+- **`color0`–`color15`** — the terminal's ANSI palette (the pastel pink
+  family: blush, sakura, orchid, lilac, plus the rose/salmon reds). Omarchy
+  derives every semantic name (`red`, `muted`, …) from these for all
+  generated configs — terminals, btop, obsidian, vscode.
+- **`nvim_*` keys** — the editor's own softer pinks, consumed only by
   `themed/neovim.lua.tpl` via `gradient_start key fallback` tokens. When a
   theme doesn't define the `nvim_*` key (i.e. any other theme), the template
   falls back to the universal name — so it renders safely everywhere.
@@ -52,7 +73,7 @@ Neovim uses [aether.nvim](https://github.com/bjarneo/aether.nvim) fed from
 time from a template.
 
 Out of the box (plain `omarchy theme install`), Omarchy's built-in template
-renders the palette automatically. The owner's exact variant — aether hot
+renders the palette automatically. This theme's exact variant — aether hot
 reload, pink `accent`, dark-pink selection — lives in
 [`themed/neovim.lua.tpl`](themed/neovim.lua.tpl). To activate it:
 
@@ -64,7 +85,13 @@ omarchy theme set tsunderick
 
 ### Editing Colors
 
-Change values in `colors.toml`, commit, pull the clone, re-apply:
+Change values in `colors.toml`, then either deploy locally:
+
+```bash
+./deploy-local-changes.sh
+```
+
+or commit and pull the clone:
 
 ```bash
 git commit -am "tweak palette" && git push
@@ -74,5 +101,8 @@ omarchy theme set tsunderick
 
 Neovim, btop, terminals and the rest regenerate — no hand-synced files.
 
-## X.com
-[iamdothash](https://x.com/iamdothash)
+## Attribution
+
+Derived from [omarchy-sakura-theme](https://github.com/bjarneo/omarchy-sakura-theme)
+by [iamdothash](https://x.com/iamdothash). Go enjoy the original if you want
+the pink-and-gold look.

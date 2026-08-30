@@ -1,10 +1,12 @@
-# Sakura palette for Omarchy — single source of truth.
+# tsunderick palette for Omarchy — single source of truth.
+# Derived from bjarneo's Sakura theme, driven toward pastel pinks.
 #
 # How this works:
-#   * color0-15 (ANSI) drive the terminal palette; the semantic names
-#     (red, green, muted, ...) auto-derive from them and feed every themed
-#     config omarchy generates (terminals, btop, obsidian, vscode, ...).
-#     Leave those alone to keep the terminal look stable.
+#   * color0-15 (ANSI) drive the terminal palette — a pastel pink family
+#     (blush, sakura, orchid, lilac) with hue spread so ls/syntax colors
+#     stay distinguishable. The semantic names (red, green, muted, ...)
+#     auto-derive from them and feed every themed config omarchy generates
+#     (terminals, btop, obsidian, vscode, ...).
 #   * The nvim_* keys below are the editor's own soft-sakura palette —
 #     consumed only by themed/neovim.lua.tpl (via {{ gradient_start nvim_x x }}
 #     tokens, which fall back to the derived x when a nvim_x key is absent).
@@ -12,53 +14,55 @@
 # Editing: change values here, then `omarchy theme set tsunderick` —
 # neovim.lua, btop.theme and friends regenerate automatically.
 
-accent = "#d9a56c"
+accent = "#ff8fb1"
 cursor = "#f0eaed"
 foreground = "#f0eaed"
 background = "#000000"
-selection_foreground = "#0d0509"
-selection_background = "#f0eaed"
+selection_foreground = "#000000"
+selection_background = "#626583"
 
 # ── Editor palette (aether.nvim softs — nvim only, terminal unaffected) ──
-nvim_dark_bg = "#060204"
+nvim_dark_bg = "#000000"
 nvim_darker_bg = "#000000"
-nvim_lighter_bg = "#230e18" # also nvim selection background
+nvim_lighter_bg = "#626583" # also nvim selection background
 nvim_dark_fg = "#c6afba"
 nvim_light_fg = "#f8f6f7"
-nvim_muted = "#7a5c66"
+nvim_muted = "#da9fdc"
 
 nvim_red = "#ff5c8a"
-nvim_yellow = "#e8b48a"
-nvim_orange = "#ff8e7c"
-nvim_green = "#ffb3c1"
+nvim_yellow = "#ff9fb2" # normal mode and parameters in code
+nvim_orange = "#ff9fb2" # warm rose-pink
+nvim_green = "#80EF80"  # nvim insert
 nvim_cyan = "#f7b3d7"
-nvim_blue = "#ff8fb1"
-nvim_purple = "#ff77a9"
-nvim_brown = "#853641"
+nvim_blue = "#dcc1eb"   # lilac — matches terminal color4
+nvim_purple = "#a7abde" # periwinkle
+nvim_brown = "#a7abde"  # dusty rose — bright enough to read on black
 
 nvim_bright_red = "#ff7aa0"
-nvim_bright_yellow = "#f1c79d"
-nvim_bright_green = "#ffc7d2"
+nvim_bright_yellow = "#ffd3e0" # pastel blush
+nvim_bright_green = "#80EF80"
 nvim_bright_cyan = "#fcc6e1"
-nvim_bright_blue = "#ffa9c2"
-nvim_bright_purple = "#ff8fbc"
+nvim_bright_blue = "#e8d0f2"   # bright lilac — matches terminal color12
+nvim_bright_purple = "#a7abde" # visual and language keywords 
 
 nvim_accent = "#ff8fb1"
 
-# ── Terminal ANSI palette (unchanged) ────────────────────────────────────
-color0 = "#0d0509"
+# ── Terminal ANSI palette (pastel pink family) ───────────────────────────
+# Hue spread keeps colors distinguishable: blush ~345°, sakura ~333°,
+# orchid ~313°, lilac ~283° — alongside the existing rose/salmon reds.
+color0 = "#000000"
 color1 = "#e85f6f"
-color2 = "#f29b9a"
-color3 = "#d4a882"
-color4 = "#d9a56c"
-color5 = "#d1b399"
-color6 = "#e8c099"
+color2 = "#da9fdc"
+color3 = "#f694be"
+color4 = "#dcc1eb"  # lilac
+color5 = "#f694be"  # sakura pink
+color6 = "#da9fdc"  # orchid pink
 color7 = "#f0eaed"
-color8 = "#4a3c45"
+color8 = "#da9fdc"
 color9 = "#ff7a8a"
 color10 = "#ffb5b4"
-color11 = "#e6ba94"
-color12 = "#ebb97e"
-color13 = "#e3c5ab"
-color14 = "#fbd2ab"
+color11 = "#ffc6d4" # bright blush
+color12 = "#e8d0f2" # bright lilac
+color13 = "#ffb3d9" # bright sakura
+color14 = "#edbbef" # bright orchid
 color15 = "#ffffff"
