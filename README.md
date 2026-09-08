@@ -40,7 +40,7 @@ convenient.)
 ## Installation
 
 ```bash
-omarchy-theme-install https://github.com/garciaErick/omarchy-tsunderick-theme
+omarchy-theme-install https://github.com/tsunderick/omarchy-tsunderick-theme
 ```
 
 Then select it:
