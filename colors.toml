@@ -66,3 +66,29 @@ color12 = "#e8d0f2" # bright lilac
 color13 = "#ffb3d9" # bright sakura
 color14 = "#edbbef" # bright orchid
 color15 = "#ffffff"
+
+# --- omarchy 4.5 semantic layer (added 2026-11-09 — maps the sakura/nvim_* palette;
+# the shell's panel surfaces read these; missing keys rendered the menu invisible) ---
+mode = "dark"
+muted = "#da9fdc"
+selection = "#626583"
+dark_background = "#000000"
+darker_background = "#000000"
+lighter_background = "#626583"
+dark_foreground = "#c6afba"
+light_foreground = "#f8f6f7"
+bright_foreground = "#f0eaed"
+red = "#ff5c8a"
+yellow = "#ff9fb2"
+orange = "#ff9fb2"
+green = "#a7abde"
+cyan = "#f7b3d7"
+blue = "#dcc1eb"
+magenta = "#a7abde"
+brown = "#a7abde"
+bright_red = "#ff7aa0"
+bright_yellow = "#ffd3e0"
+bright_green = "#80EF80"
+bright_cyan = "#fcc6e1"
+bright_blue = "#e8d0f2"
+bright_magenta = "#a7abde"
