@@ -23,8 +23,7 @@ single source of truth for *both* palettes:
 ```
 ├── colors.toml               # Single source of truth — edit colors HERE
 ├── themed/
-│   ├── neovim.lua.tpl        # aether.nvim template (opt-in, see README)
-│   └── tmux-pills.conf.tpl   # tmux status pills
+│   └── neovim.lua.tpl        # aether.nvim template (opt-in, see README)
 ├── backgrounds/              # Background rotation
 ├── deploy-local-changes.sh   # One-command local deploy while iterating
 └── icons.theme
