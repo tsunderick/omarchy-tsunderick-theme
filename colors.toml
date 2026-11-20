@@ -67,8 +67,15 @@ color13 = "#ffb3d9" # bright sakura
 color14 = "#edbbef" # bright orchid
 color15 = "#ffffff"
 
-# --- omarchy 4.5 semantic layer (added 2026-11-09 — maps the sakura/nvim_* palette;
-# the shell's panel surfaces read these; missing keys rendered the menu invisible) ---
+# --- omarchy 4.5 semantic layer (added 2026-11-09; hue keys remapped 2026-11-19).
+# LAW: on omarchy 4.5 the hue keys below feed the TERMINAL ANSI slots
+# (foot.tpl renders regular1-6/bright1-6 from red/green/.../bright_*), and
+# explicit beats derived — so they MUST mirror color1-15 above or the
+# curated ANSI palette silently stops applying (2026-11-19: they were
+# mapped from the nvim_* editor palette and a literal #80EF80 green landed
+# in the pink terminal). The shell's panel surfaces also read these — in
+# the missing-keys era that rendered the menu invisible. nvim_* stays
+# editor-only. orange/brown have no ANSI slot and keep soft shell values. ---
 mode = "dark"
 muted = "#da9fdc"
 selection = "#626583"
@@ -78,17 +85,17 @@ lighter_background = "#626583"
 dark_foreground = "#c6afba"
 light_foreground = "#f8f6f7"
 bright_foreground = "#f0eaed"
-red = "#ff5c8a"
-yellow = "#ff9fb2"
-orange = "#ff9fb2"
-green = "#a7abde"
-cyan = "#f7b3d7"
-blue = "#dcc1eb"
-magenta = "#a7abde"
-brown = "#a7abde"
-bright_red = "#ff7aa0"
-bright_yellow = "#ffd3e0"
-bright_green = "#80EF80"
-bright_cyan = "#fcc6e1"
-bright_blue = "#e8d0f2"
-bright_magenta = "#a7abde"
+red = "#e85f6f"     # = color1
+yellow = "#f694be"  # = color3
+orange = "#ff9fb2"  # no ANSI slot — soft rose, shell-only
+green = "#da9fdc"   # = color2
+cyan = "#da9fdc"    # = color6
+blue = "#dcc1eb"    # = color4
+magenta = "#f694be" # = color5
+brown = "#a7abde"   # no ANSI slot — dusty rose, shell-only
+bright_red = "#ff7a8a"     # = color9
+bright_yellow = "#ffc6d4"  # = color11
+bright_green = "#ffb5b4"   # = color10
+bright_cyan = "#edbbef"    # = color14
+bright_blue = "#e8d0f2"    # = color12
+bright_magenta = "#ffb3d9" # = color13

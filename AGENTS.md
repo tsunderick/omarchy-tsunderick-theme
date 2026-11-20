@@ -43,6 +43,22 @@ is documented in the README; the deploy script is the fast path.
 
 ## Gotchas
 
+### Semantic hue keys ARE the terminal palette (omarchy 4.5)
+
+Omarchy 4.5's built-in terminal templates render the ANSI slots from the
+semantic names (`foot.tpl`: `regular2={{ green_strip }}`, `bright2={{
+bright_green_strip }}`, …), and an explicit key beats the derived one.
+So `red/green/yellow/blue/magenta/cyan/bright_*` in `colors.toml` MUST
+mirror `color1-15` — they are not a free secondary palette. Incident
+2026-11-19: the semantic layer was authored from the `nvim_*` editor
+palette (`green=#a7abde`, `bright_green=#80EF80`), and the next
+`omarchy theme set` swapped the curated pink ANSI palette for the editor's
+— a literal vivid green landing in an all-pink terminal. `nvim_*` stays
+editor-only (only `themed/neovim.lua.tpl` reads it). `orange`/`brown`
+have no ANSI slot and may keep soft shell-only values. Machines that
+rendered before the fix serve a stale-but-correct state until their next
+`omarchy theme set` — pull + re-set once, and it stays fixed.
+
 ### Never hand-edit the deployed copy
 
 `~/.config/omarchy/themes/tsunderick` is a disposable deploy target. The
