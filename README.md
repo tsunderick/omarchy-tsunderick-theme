@@ -66,6 +66,16 @@ The theme keeps two palettes in that one file:
   theme doesn't define the `nvim_*` key (i.e. any other theme), the template
   falls back to the universal name — so it renders safely everywhere.
 
+### Template placement
+
+- Hex values live **only** in `colors.toml`.
+- Templates using only universal keys (`color0`–`color15`, `background`,
+  `red`, …) live in the **dotfiles** (`assets/.config/omarchy/themed/`) —
+  they work with any active theme. Pattern: `delta.gitconfig.tpl`,
+  `opencode-agent-*.tpl`.
+- Templates needing this theme's own keys (`nvim_*`) live **here** in
+  `themed/`. Pattern: `neovim.lua.tpl`.
+
 ## Neovim Theme
 
 Neovim uses [aether.nvim](https://github.com/bjarneo/aether.nvim) fed from
@@ -103,13 +113,32 @@ Neovim, btop, terminals and the rest regenerate — no hand-synced files.
 
 ## OpenCode
 
-**Zero integration needed.** opencode follows the theme through its built-in
-`system` theme, which it generates at runtime from the terminal's detected
-palette (foot/tmux carry the ANSI colors above). Keep `tui.json` as:
+opencode follows the theme through its `system` theme, generated at runtime
+from the terminal's detected palette (foot carries the ANSI colors above).
+In V2 the setting lives in `cli.json`:
 
 ```json
-{ "$schema": "https://opencode.ai/tui.json", "theme": "system" }
+{ "theme": { "name": "system" } }
 ```
+
+**One thing `system` gets wrong: agent accents** (bit us 2026-11-20).
+opencode maps the *build* agent to the palette's **red slot** —
+deterministic across 2.2.6–2.3.x, so "build mode red" was never a broken
+palette. Fix: agent colors as `{file:}` refs into theme-rendered state:
+
+```json
+"build": { "color": "{file:~/.local/state/omarchy/current/theme/opencode-agent-build}" }
+```
+
+fed by two tiny dotfiles templates (`opencode-agent-build.tpl` = `{{ color4 }}`,
+`opencode-agent-plan.tpl` = `{{ color3 }}`). No hex ever leaves `colors.toml`,
+and switching themes re-accents opencode automatically.
+
+Two more scars:
+
+- V1-format custom theme JSONs (mechanoonna) do **not** load on V2.3.
+- The TUI settings UI (Ctrl+P) rewrites `cli.json` via temp+rename — it
+  severs the dotfiles symlink. `tsun --symlinks` restores it.
 
 **Pitfall — dead symlinks under `~/.config/opencode/` (bit us
 2026-08-30).** At every launch and every config reload, opencode rescans
